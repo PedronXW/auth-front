@@ -56,12 +56,12 @@ const Register = () => {
 
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center bg-gray-100">
-      <main className="h-2/3 w-2/5 justify-between bg-white p-14 flex flex-col rounded-md shadow-md">
+      <main className=" w-full h-full  lg:w-2/5 lg:h-3/4 justify-between bg-white p-14 flex flex-col rounded-md shadow-md">
         <div className="flex -mt-3 -ml-3">
           <img src={logo} alt="Logo" className="h-20" />
         </div>
 
-        <h1 className="text-lg font-normal text-gray-400 -mt-2 ml-1">
+        <h1 className="text-lg font-normal text-gray-400 -mt-2 ml-1 lg:text-start text-center">
           Preencha os campos abaixo para se cadastrar
         </h1>
 
