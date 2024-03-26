@@ -8,49 +8,56 @@ const InputActionVisibilityRemove = () => {
 
   const { setValue, getValues } = useFormContext()
 
-  function handleChangeVisibility() {
-    changeVisibility(!visibility)
-  }
+  if (getValues()[id] !== undefined && getValues()[id].length === 0) return null
 
-  return (
-    <div className="flex">
-      <button
-        type="button"
-        className="h-5 w-5 mr-4"
-        onClick={handleChangeVisibility}
-      >
-        {getValues()[id] !== undefined &&
-        getValues()[id].length === 0 ? null : visibility ? (
+  if (getValues()[id] !== undefined && getValues()[id].length !== 0) {
+    if (visibility) {
+      return (
+        <div className="flex">
           <EyeClosed
             size={20}
             className="text-primary_color"
-            onClick={(event) => {
+            onClick={() => {
               changeVisibility(false)
             }}
           />
-        ) : (
-          <Eye
-            size={20}
-            className="text-primary_color"
-            onClick={(event) => {
-              changeVisibility(true)
-            }}
-          />
-        )}
-      </button>
-      <button type="reset" className="h-5 w-5">
-        {getValues()[id] !== undefined && getValues()[id].length > 0 ? (
-          <X
-            size={20}
-            className="text-primary_color"
-            onClick={(event) => {
-              setValue(id, '')
-            }}
-          />
-        ) : null}
-      </button>
-    </div>
-  )
+          <button type="reset" className="h-5 w-5">
+            {getValues()[id] !== undefined && getValues()[id].length > 0 ? (
+              <X
+                size={20}
+                className="text-primary_color"
+                onClick={() => {
+                  setValue(id, '')
+                }}
+              />
+            ) : null}
+          </button>
+        </div>
+      )
+    }
+    return (
+      <div className="flex">
+        <Eye
+          size={20}
+          className="text-primary_color"
+          onClick={() => {
+            changeVisibility(true)
+          }}
+        />
+        <button type="reset" className="h-5 w-5">
+          {getValues()[id] !== undefined && getValues()[id].length > 0 ? (
+            <X
+              size={20}
+              className="text-primary_color"
+              onClick={() => {
+                setValue(id, '')
+              }}
+            />
+          ) : null}
+        </button>
+      </div>
+    )
+  }
 }
 
 export default InputActionVisibilityRemove

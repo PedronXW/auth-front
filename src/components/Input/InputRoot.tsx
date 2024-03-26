@@ -26,7 +26,7 @@ const InputRoot = ({
   const {
     setFocus,
     formState: { errors },
-    getFieldState,
+    clearErrors,
   } = useFormContext()
 
   const [isFocused, setIsFocused] = useState(false)
@@ -34,9 +34,8 @@ const InputRoot = ({
   const [borderColor, setBorderColor] = useState('gray-400')
 
   useEffect(() => {
-    setBorderColor('gray-400')
+    console.log(errors)
     if (errors[id] !== undefined) {
-      console.log(errors)
       setBorderColor(() => {
         return 'red-400'
       })
@@ -44,7 +43,7 @@ const InputRoot = ({
     if (isFocused) {
       setBorderColor('black')
     }
-  }, [errors, isFocused])
+  }, [errors, isFocused, id])
 
   return (
     <InputContext.Provider
@@ -59,6 +58,7 @@ const InputRoot = ({
         onClick={() => {
           setFocus(id)
           setIsFocused(true)
+          clearErrors(id)
         }}
         onBlur={() => {
           setIsFocused(false)

@@ -1,4 +1,5 @@
 import { Envelope, Person } from '@phosphor-icons/react'
+import { enqueueSnackbar } from 'notistack'
 import { useFormContext } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { RegisterFormState } from '../../pages/Register'
@@ -15,7 +16,10 @@ const NameEmailForm = ({ setNextPage }: NameEmailFormProps) => {
   } = useFormContext()
 
   const handleContinue = () => {
-    if (!getValues('name') || !getValues('email')) return
+    if (!getValues().name || !getValues().email) {
+      enqueueSnackbar('Preencha todos os campos', { variant: 'error' })
+      return
+    }
 
     if (errors.name || errors.email) return
 

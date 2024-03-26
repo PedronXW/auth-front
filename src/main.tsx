@@ -1,4 +1,6 @@
+import { X } from '@phosphor-icons/react'
 import 'dotenv'
+import { SnackbarProvider, closeSnackbar } from 'notistack'
 import { CookiesProvider } from 'react-cookie'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
@@ -6,9 +8,23 @@ import App from './App.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <CookiesProvider>
-      <App />
-    </CookiesProvider>
-  </BrowserRouter>,
+  <SnackbarProvider
+    maxSnack={4}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    autoHideDuration={5000}
+    action={(snackbarId) => (
+      <button onClick={() => closeSnackbar(snackbarId)}>
+        <X size={20} />
+      </button>
+    )}
+  >
+    <BrowserRouter>
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
+    </BrowserRouter>
+  </SnackbarProvider>,
 )

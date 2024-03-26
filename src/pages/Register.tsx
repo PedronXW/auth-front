@@ -37,7 +37,7 @@ const Register = () => {
     mode: 'onChange',
   })
 
-  const { handleSubmit, clearErrors, getValues } = registerForm
+  const { handleSubmit, getValues } = registerForm
 
   const handleRegister = async (credentials: any) => {
     if (
@@ -67,9 +67,6 @@ const Register = () => {
 
         <form
           onSubmit={handleSubmit(handleRegister)}
-          onChange={() => {
-            clearErrors()
-          }}
           autoComplete="off"
           className="flex flex-col gap-2"
         >
